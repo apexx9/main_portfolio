@@ -1,0 +1,140 @@
+/* app/globals.css */
+@import "tailwindcss";
+
+/* Amini-inspired Design Tokens */
+:root {
+  --black: #0a0a0a;
+  --black-soft: #111111;
+  --white: #ffffff;
+  --yellow: #f5c842;
+  --yellow-dark: #d4a800;
+  --gray-muted: #888888;
+  --gray-light: #cccccc;
+  --gray-border: rgba(255,255,255,0.08);
+  --gray-border-mid: rgba(255,255,255,0.15);
+}
+
+/* Only hide default cursor on desktop */
+@media (min-width: 769px) {
+  * {
+    cursor: none;
+  }
+}
+
+/* On mobile/tablet, show default cursor */
+@media (max-width: 768px) {
+  * {
+    cursor: auto;
+  }
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-dm-sans), var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(245, 200, 66, 0.2);
+  color: white;
+}
+
+/* Font families */
+.font-syne {
+  font-family: 'Syne', var(--font-inter), sans-serif;
+}
+
+.font-dm {
+  font-family: var(--font-dm-sans), var(--font-inter), sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+/* Amini Rings Animation */
+.hero-rings-container {
+  animation: rotateRings 120s linear infinite;
+}
+
+@keyframes rotateRings {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Button Styles */
+.btn-yellow {
+  background: var(--yellow);
+  color: #1a1200;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: all 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-yellow:hover {
+  background: #f0bc20;
+  transform: scale(1.02);
+}
+
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Glass navbar */
+.glass-nav {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--gray-border);
+}
+
+/* Press logos style */
+.press-logos span {
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.2s;
+}
+
+.press-logos span:hover {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Font Awesome icon styles */
+.fa-brands {
+  transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Hover effects for marquee */
+.marquee-item:hover .fa-brands {
+  filter: drop-shadow(0 0 8px rgba(245, 200, 66, 0.3));
+}
