@@ -1,24 +1,35 @@
 // app/projects/[slug]/page.tsx
+import { getProjectBySlug, getProjects } from '@/lib/notion'
 import { notFound } from 'next/navigation'
-import { ProjectDetail } from '@/components/project-detail';
-import { projects, getProjectSlugs } from '@/lib/projects';
+import { ProjectDetail } from '@/components/project-detail'
 
-export function generateStaticParams() {
-  return getProjectSlugs().map((slug) => ({
-    slug,
-  }))
+export const dynamic = 'force-dynamic'
+export const revalidate = 3600
+
+type Props = {
+  params: Promise<{ slug: string }>
 }
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const project = projects[slug]
-
-  if (!project) {
-    notFound()
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params  // ← await
+  const project = await getProjectBySlug(slug)
+  if (!project) return { title: 'Project Not Found' }
+  return {
+    title: `${project.title} | ronny.tech`,
+    description: project.description,
   }
+}
 
-  const nextProject = project.nextProject ? projects[project.nextProject] : null
-  const prevProject = project.prevProject ? projects[project.prevProject] : null
+export default async function ProjectPage({ params }: Props) {
+  const { slug } = await params  // ← await
+  const project = await getProjectBySlug(slug)
+  const allProjects = await getProjects()
 
-  return <ProjectDetail project={project} nextProject={nextProject} prevProject={prevProject} />
+  if (!project) notFound()
+
+  const currentIndex = allProjects.findIndex(p => p.slug === slug)
+  const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null
+  const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null
+
+  return <ProjectDetail project={project} prevProject={prevProject} nextProject={nextProject} />
 }

@@ -12,6 +12,7 @@ const navItems = [
   { label: 'Projects', href: '/projects' },
   { label: 'About', href: '/#about' },
   { label: 'Contact', href: '/#contact' },
+  { label: 'Blog', href: '/blog' }
 ]
 
 const menuLinks = {
@@ -21,6 +22,7 @@ const menuLinks = {
     { label: 'Projects', href: '/projects' },
     { label: 'About', href: '/#about' },
     { label: 'Contact', href: '/#contact' },
+    { label: 'Blog', href: '/blog' }
   ],
   secondary: [
     { label: 'Twitter', href: '#' },
