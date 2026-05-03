@@ -45,7 +45,7 @@ export default function Footer() {
               </button>
             </div>
             <p className="text-[10px] tracking-[0.06em] uppercase text-white/20 mt-3">
-              By subscribing you agree to our terms
+              By subscribing you agree to the terms and conditions
             </p>
           </div>
         </div>

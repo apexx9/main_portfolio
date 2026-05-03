@@ -1,9 +1,10 @@
-// components/blog-detail.tsx - Blog article detail component
+// components/blog-detail.tsx
 'use client'
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 interface BlogPost {
   id: string
@@ -25,7 +26,8 @@ interface BlogDetailProps {
 
 export function BlogDetail({ post }: BlogDetailProps) {
   const router = useRouter()
-  
+  const [copied, setCopied] = useState(false)
+
   const formattedDate = new Date(post.publishedDate).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
@@ -33,6 +35,40 @@ export function BlogDetail({ post }: BlogDetailProps) {
   })
 
   const readingTime = Math.max(1, Math.ceil(post.content.replace(/<[^>]*>/g, '').split(' ').length / 200))
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea')
+      textArea.value = window.location.href
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textArea)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: post.title,
+          text: post.description,
+          url: window.location.href,
+        })
+      } catch {
+        // User cancelled share
+      }
+    } else {
+      handleCopyLink()
+    }
+  }
 
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
@@ -134,11 +170,25 @@ export function BlogDetail({ post }: BlogDetailProps) {
           
           <div className="flex items-center gap-4">
             <span className="text-xs text-white/15 font-dm uppercase tracking-wider">Share</span>
+            
+            {/* Share Button (mobile) */}
             <button
-              onClick={() => navigator.clipboard.writeText(window.location.href)}
-              className="text-sm text-white/25 hover:text-white/60 transition-colors duration-300 font-dm"
+              onClick={handleShare}
+              className="sm:hidden text-sm text-white/25 hover:text-white/60 transition-colors duration-300 font-dm"
             >
-              Copy link
+              Share
+            </button>
+
+            {/* Copy Link Button (desktop) */}
+            <button
+              onClick={handleCopyLink}
+              className={`hidden sm:block text-sm transition-all duration-300 font-dm ${
+                copied 
+                  ? 'text-yellow-400' 
+                  : 'text-white/25 hover:text-white/60'
+              }`}
+            >
+              {copied ? 'Copied!' : 'Copy link'}
             </button>
           </div>
         </div>
