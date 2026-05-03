@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from './logo'
+import { getSocials } from '@/lib/socials'
 
 const navItems = [
   { label: 'Work', href: '/#work' },
@@ -23,12 +24,6 @@ const menuLinks = {
     { label: 'About', href: '/#about' },
     { label: 'Contact', href: '/#contact' },
     { label: 'Blog', href: '/blog' }
-  ],
-  secondary: [
-    { label: 'Twitter', href: '#' },
-    { label: 'GitHub', href: '#' },
-    { label: 'LinkedIn', href: '#' },
-    { label: 'Dribbble', href: '#' },
   ],
 }
 
@@ -298,13 +293,15 @@ export default function Nav() {
                 {/* Social & Contact */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-white/[0.04]">
                   <div className="flex gap-6">
-                    {menuLinks.secondary.map(link => (
+                    {getSocials().map(social => (
                       <a
-                        key={link.label}
-                        href={link.href}
+                        key={social.name}
+                        href={social.url}
                         className="text-xs text-white/25 hover:text-white/60 transition-colors duration-300 font-dm tracking-wider"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        {link.label}
+                        {social.name}
                       </a>
                     ))}
                   </div>
