@@ -6,7 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { Logo } from './logo'
 import { getSocials } from '@/lib/socials'
-import { subscribeToNewsletter } from '@/lib/api'
+import { subscribeToNewsletter
+  
+ } from '@/lib/api'
 
 export default function Footer() {
   const date = new Date().getFullYear()
