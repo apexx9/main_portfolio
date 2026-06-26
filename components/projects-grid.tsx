@@ -4,6 +4,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
+import { ArrowUpRight, FolderX } from 'lucide-react'
 
 interface Project {
   id: string
@@ -143,17 +144,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
                         <h3 className="text-xl lg:text-2xl font-syne font-semibold text-white group-hover:text-yellow-400 transition-colors duration-300">
                           {project.title}
                         </h3>
-                        <svg
-                          className="w-5 h-5 text-white/10 group-hover:text-yellow-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 mt-1 flex-shrink-0"
-                          fill="none"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          viewBox="0 0 24 24"
-                        >
-                          <line x1="7" y1="17" x2="17" y2="7" />
-                          <polyline points="7 7 17 7 17 17" />
-                        </svg>
+                        <ArrowUpRight className="w-5 h-5 text-white/10 group-hover:text-yellow-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300 mt-1 flex-shrink-0" />
                       </div>
                       <p className="text-xs text-white/25 uppercase tracking-[0.1em] font-dm mb-3">
                         {project.category}
@@ -170,11 +161,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
             /* Empty state */
             <div className="text-center py-32">
               <div className="w-16 h-16 rounded-full bg-white/[0.02] border border-white/[0.04] flex items-center justify-center mx-auto mb-6">
-                <svg className="w-6 h-6 text-white/10" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/>
-                  <line x1="9" y1="9" x2="15" y2="15"/>
-                  <line x1="15" y1="9" x2="9" y2="15"/>
-                </svg>
+                <FolderX className="w-6 h-6 text-white/10" />
               </div>
               <h3 className="font-syne text-xl font-bold text-white/30 mb-2">No projects found</h3>
               <p className="text-white/20 font-dm text-sm">

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { ArrowLeft } from 'lucide-react'
 
 interface BlogPost {
   id: string
@@ -79,10 +80,7 @@ export function BlogDetail({ post }: BlogDetailProps) {
           className="flex items-center gap-2 text-white/30 hover:text-white/70 transition-colors duration-300 group"
           data-hover
         >
-          <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-            <line x1="19" y1="12" x2="5" y2="12"/>
-            <polyline points="12 19 5 12 12 5"/>
-          </svg>
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
           <span className="text-xs font-medium tracking-[0.1em] uppercase font-dm">Back</span>
         </button>
       </div>

@@ -1,8 +1,11 @@
 /* app/globals.css */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Inter:wght@100..900&display=swap");
 @import "tailwindcss";
 
 /* Amini-inspired Design Tokens */
 :root {
+  --font-inter: 'Inter';
+  --font-dm-sans: 'DM Sans';
   --black: #0a0a0a;
   --black-soft: #111111;
   --white: #ffffff;
@@ -128,17 +131,6 @@ body {
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
-
-/* Font Awesome icon styles */
-.fa-brands {
-  transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-/* Hover effects for marquee */
-.marquee-item:hover .fa-brands {
-  filter: drop-shadow(0 0 8px rgba(245, 200, 66, 0.3));
-}
-
 
 /* Add to app/globals.css */
 

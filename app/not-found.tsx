@@ -3,6 +3,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { AlertCircle, Home } from 'lucide-react'
 
 export default function NotFound() {
   return (
@@ -31,31 +32,24 @@ export default function NotFound() {
         >
           {/* Icon */}
           <div className="w-20 h-20 rounded-full bg-yellow-400/5 border border-yellow-400/10 flex items-center justify-center mx-auto mb-8">
-            <svg className="w-10 h-10 text-yellow-400/60" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="8" x2="12" y2="12"/>
-              <line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
+            <AlertCircle className="w-10 h-10 text-yellow-400/60" />
           </div>
 
           <h1 className="font-syne text-5xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
             Page not found
           </h1>
-          <p className="text-white/35 font-dm text-base lg:text-lg max-w-md mx-auto leading-relaxed mb-10">
-            The page you're looking for doesn't exist or has been moved. Let's get you back on track.
-          </p>
+            <p className="text-white/35 font-dm text-base lg:text-lg max-w-md mx-auto leading-relaxed mb-10">
+            The page you&apos;re looking for doesn&apos;t exist or has been moved. Let&apos;s get you back on track.
+            </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/"
               className="btn-yellow gap-3 px-8 py-4 text-sm font-dm inline-flex items-center justify-center"
-              data-hover
-            >
-              <span className="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-4 h-4" fill="none" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                  <polyline points="9 22 9 12 15 12 15 22"/>
-                </svg>
+            data-hover
+          >
+            <span className="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center flex-shrink-0">
+                <Home className="w-4 h-4" />
               </span>
               Back to Home
             </Link>

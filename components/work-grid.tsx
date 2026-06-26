@@ -3,6 +3,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 interface Project {
   id: string
@@ -116,10 +117,7 @@ export function WorkGrid({ projects }: WorkGridProps) {
             data-hover
           >
             View All Projects
-            <svg className="w-4 h-4" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-              <line x1="5" y1="12" x2="19" y2="12"/>
-              <polyline points="12 5 19 12 12 19"/>
-            </svg>
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
       </div>

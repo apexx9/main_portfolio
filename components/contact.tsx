@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
 import { submitContactForm } from '@/lib/api'
 import { Button } from './button'
+import { AlertCircle, Check, CheckCircle2, ChevronDown, Loader2 } from 'lucide-react'
 
 interface FormData {
   name: string
@@ -126,13 +127,13 @@ export function Contact() {
               className="space-y-12"
             >
               <h2 className="font-syne text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>
-                Let's work<br />
+                Let&apos;s work<br />
                 <span className="text-white/20">together.</span>
               </h2>
 
               <p className="text-white/40 text-base font-light leading-relaxed max-w-md font-dm">
-                Have a project in mind? I'd love to hear about it. 
-                Fill out the form and I'll get back to you within 24 hours.
+                Have a project in mind? I&apos;d love to hear about it. 
+                Fill out the form and I&apos;ll get back to you within 24 hours.
               </p>
 
               <div className="space-y-6 pt-8 border-t border-white/5">
@@ -214,42 +215,7 @@ export function Contact() {
                       transition={{ duration: 0.5, delay: 0.3 }}
                     /> */}
                     
-                    {/* Checkmark SVG */}
-                    <motion.svg
-                      className="w-10 h-10 text-yellow-400 relative z-10"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      {/* Circle */}
-                      <motion.circle
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ 
-                          duration: 0.6, 
-                          ease: "easeInOut",
-                          delay: 0.3
-                        }}
-                      />
-                      
-                      {/* Checkmark */}
-                      <motion.path
-                        d="M7 13l3 3 7-7"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ 
-                          duration: 0.4, 
-                          ease: "easeInOut",
-                          delay: 0.7
-                        }}
-                      />
-                    </motion.svg>
+                    <CheckCircle2 className="w-10 h-10 text-yellow-400 relative z-10" />
                   </motion.div>
 
                   {/* Success Text */}
@@ -377,18 +343,13 @@ export function Contact() {
                         ) : (
                           <span className="text-white/20 text-sm font-dm">Select budget range</span>
                         )}
-                        <motion.svg
+                        <motion.div
                           animate={{ rotate: isDropdownOpen ? 180 : 0 }}
                           transition={{ duration: 0.2 }}
-                          className="w-4 h-4 text-white/20 flex-shrink-0 ml-4"
-                          fill="none"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          viewBox="0 0 24 24"
+                          className="ml-4 flex-shrink-0 text-white/20"
                         >
-                          <polyline points="6 9 12 15 18 9"/>
-                        </motion.svg>
+                          <ChevronDown className="w-4 h-4" />
+                        </motion.div>
                       </button>
 
                       <AnimatePresence>
@@ -438,18 +399,13 @@ export function Contact() {
                                       </span>
                                     </div>
                                     {formData.budget === option.value && (
-                                      <motion.svg
+                                      <motion.div
                                         initial={{ scale: 0 }}
                                         animate={{ scale: 1 }}
-                                        className="w-4 h-4 text-yellow-400 flex-shrink-0 ml-4"
-                                        fill="none"
-                                        strokeWidth="2.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        viewBox="0 0 24 24"
+                                        className="ml-4 flex-shrink-0 text-yellow-400"
                                       >
-                                        <polyline points="20 6 9 17 4 12"/>
-                                      </motion.svg>
+                                        <Check className="w-4 h-4" />
+                                      </motion.div>
                                     )}
                                   </div>
 
@@ -466,7 +422,7 @@ export function Contact() {
 
                             <div className="px-5 py-3 border-t border-white/[0.04] bg-white/[0.01]">
                               <p className="text-[10px] text-white/10 font-dm">
-                                Budgets are flexible — let's discuss what works best
+                                Budgets are flexible — let&apos;s discuss what works best
                               </p>
                             </div>
                           </motion.div>
@@ -512,11 +468,7 @@ export function Contact() {
                         className="p-4 rounded-xl bg-red-500/5 border border-red-500/15 overflow-hidden"
                       >
                         <div className="flex items-start gap-3">
-                          <svg className="w-4 h-4 text-red-400/60 flex-shrink-0 mt-0.5" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10"/>
-                            <line x1="12" y1="8" x2="12" y2="12"/>
-                            <line x1="12" y1="16" x2="12.01" y2="16"/>
-                          </svg>
+                          <AlertCircle className="w-4 h-4 text-red-400/60 flex-shrink-0 mt-0.5" />
                           <p className="text-red-400/70 text-sm font-dm">{submitError}</p>
                         </div>
                       </motion.div>
@@ -533,10 +485,7 @@ export function Contact() {
                     >
                       {isSubmitting ? (
                         <>
-                          <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                          </svg>
+                          <Loader2 className="w-4 h-4 animate-spin" />
                           Sending...
                         </>
                       ) : (

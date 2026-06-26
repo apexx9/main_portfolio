@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from './logo'
 import { getSocials } from '@/lib/socials'
+import { ArrowRight, Menu, X } from 'lucide-react'
 
 const navItems = [
   { label: 'Work', href: '/#work' },
@@ -33,16 +34,28 @@ export default function Nav() {
   const pathname = usePathname()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+    let ticking = false
+
+    const updateScrollState = () => {
+      setIsScrolled(window.scrollY > 12)
+      ticking = false
     }
-    window.addEventListener('scroll', handleScroll)
+
+    const handleScroll = () => {
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(updateScrollState)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   // Close mobile menu on route change
   useEffect(() => {
-    setIsMobileOpen(false)
+    const id = window.requestAnimationFrame(() => setIsMobileOpen(false))
+    return () => window.cancelAnimationFrame(id)
   }, [pathname])
 
   // Prevent body scroll when mobile menu is open
@@ -57,61 +70,6 @@ export default function Nav() {
     }
   }, [isMobileOpen])
 
-  // Menu animation variants
-  const menuVariants = {
-    closed: {
-      opacity: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.76, 0, 0.24, 1],
-      },
-    },
-    open: {
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: [0.76, 0, 0.24, 1],
-      },
-    },
-  }
-
-  const linkVariants = {
-    closed: {
-      opacity: 0,
-      y: 40,
-      transition: {
-        duration: 0.3,
-      },
-    },
-    open: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        delay: 0.1 + i * 0.08,
-        ease: [0.76, 0, 0.24, 1],
-      },
-    }),
-  }
-
-  const overlayVariants = {
-    closed: {
-      clipPath: 'circle(0% at calc(100% - 28px) 32px)',
-      transition: {
-        duration: 0.7,
-        ease: [0.76, 0, 0.24, 1],
-        delay: 0.2,
-      },
-    },
-    open: {
-      clipPath: 'circle(150% at calc(100% - 28px) 32px)',
-      transition: {
-        duration: 0.9,
-        ease: [0.76, 0, 0.24, 1],
-      },
-    },
-  }
-
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -122,7 +80,7 @@ export default function Nav() {
       {/* Navbar background */}
       <div className={`absolute inset-0 transition-all duration-500 ${
         isScrolled || isMobileOpen
-          ? 'bg-[#0A0A0A]/90 backdrop-blur-xl border-b border-white/[0.04]' 
+          ? 'bg-[#0A0A0A]/88 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.03)]' 
           : 'bg-transparent'
       }`} />
 
@@ -168,26 +126,32 @@ export default function Nav() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="lg:hidden relative w-10 h-10 flex items-center justify-center z-50"
+            className="lg:hidden relative w-10 h-10 flex items-center justify-center z-50 text-white"
             aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
           >
-            <div className="relative w-6 h-4">
-              <motion.span
-                animate={isMobileOpen ? { rotate: 45, y: 7, width: '100%' } : { rotate: 0, y: 0, width: '100%' }}
-                transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-                className="absolute left-0 top-0 h-[1.5px] bg-white origin-center rounded-full"
-              />
-              <motion.span
-                animate={isMobileOpen ? { opacity: 0, x: -20, width: '0%' } : { opacity: 1, x: 0, width: '60%' }}
-                transition={{ duration: 0.2 }}
-                className="absolute right-0 top-[7px] h-[1.5px] bg-white/60 rounded-full"
-              />
-              <motion.span
-                animate={isMobileOpen ? { rotate: -45, y: -7, width: '100%' } : { rotate: 0, y: 0, width: '80%' }}
-                transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-                className="absolute right-0 bottom-0 h-[1.5px] bg-white/40 origin-center rounded-full"
-              />
-            </div>
+            <AnimatePresence mode="wait" initial={false}>
+              {isMobileOpen ? (
+                <motion.span
+                  key="close"
+                  initial={{ opacity: 0, scale: 0.9, rotate: -15 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, rotate: 15 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="w-5 h-5" />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="menu"
+                  initial={{ opacity: 0, scale: 0.9, rotate: 15 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, rotate: -15 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="w-5 h-5" />
+                </motion.span>
+              )}
+            </AnimatePresence>
           </button>
         </div>
       </div>
@@ -282,10 +246,7 @@ export default function Nav() {
                   className="btn-yellow inline-flex items-center gap-3 px-8 py-4 text-sm font-dm w-full sm:w-auto justify-center"
                 >
                   <span className="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4" fill="none" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                      <line x1="5" y1="12" x2="19" y2="12"/>
-                      <polyline points="12 5 19 12 12 19"/>
-                    </svg>
+                    <ArrowRight className="w-4 h-4" />
                   </span>
                   Start a project
                 </Link>

@@ -1,7 +1,6 @@
 // components/blog-section.tsx - Home page blog section
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { BlogCard } from './blog-card'
 

@@ -6,9 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { Logo } from './logo'
 import { getSocials } from '@/lib/socials'
-import { subscribeToNewsletter
-  
- } from '@/lib/api'
+import { subscribeToNewsletter } from '@/lib/api'
+import { ArrowRight, Check, Loader2, Mail } from 'lucide-react'
 
 export default function Footer() {
   const date = new Date().getFullYear()
@@ -56,7 +55,7 @@ export default function Footer() {
             </div>
             <p className="text-sm text-white/40 leading-relaxed max-w-sm font-dm">
               Creating digital experiences that blend beauty with functionality. 
-              Let's build something remarkable together.
+              Let&apos;s build something remarkable together.
             </p>
           </div>
 
@@ -65,10 +64,7 @@ export default function Footer() {
               Subscribe to my newsletter
             </p>
             <form onSubmit={handleSubscribe} className="flex items-center bg-white/5 border border-white/10 rounded-full pl-5 pr-1.5 py-1.5 max-w-md focus-within:border-white/30 transition-colors">
-              <svg className="text-white/40 mr-3 flex-shrink-0" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                <polyline points="2,4 12,13 22,4"/>
-              </svg>
+              <Mail className="w-4 h-4 text-white/40 mr-3 flex-shrink-0" />
               <input 
                 type="email"
                 value={email}
@@ -83,19 +79,11 @@ export default function Footer() {
                 className="w-10 h-10 bg-yellow-400 hover:bg-yellow-300 disabled:bg-yellow-400/50 text-black rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 disabled:scale-100 flex-shrink-0"
               >
                 {status === 'loading' ? (
-                  <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                  </svg>
+                  <Loader2 className="w-4 h-4 animate-spin" />
                 ) : status === 'success' ? (
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
+                  <Check className="w-4 h-4" />
                 ) : (
-                  <svg fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" className="w-4 h-4">
-                    <line x1="5" y1="12" x2="19" y2="12"/>
-                    <polyline points="12 5 19 12 12 19"/>
-                  </svg>
+                  <ArrowRight className="w-4 h-4" />
                 )}
               </button>
             </form>
@@ -179,7 +167,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span dangerouslySetInnerHTML={{ __html: social.icon }} />
+                    <social.icon className="w-4 h-4 text-white/35" />
                     {social.name}
                   </Link>
                 </li>

@@ -4,6 +4,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { BlogCard } from './blog-card'
+import { FileText } from 'lucide-react'
 
 interface BlogPost {
   id: string
@@ -57,7 +58,7 @@ export function BlogList({ posts }: BlogListProps) {
 
             {/* Tag Filter */}
             <div className="flex flex-wrap gap-2 mt-10">
-              {allTags.map((tag, index) => (
+              {allTags.map((tag) => (
                 <button
                   key={tag}
                   onClick={() => setActiveTag(tag)}
@@ -111,12 +112,7 @@ export function BlogList({ posts }: BlogListProps) {
           {posts.length === 0 && (
             <div className="text-center py-32">
               <div className="w-16 h-16 rounded-full bg-white/[0.02] border border-white/[0.04] flex items-center justify-center mx-auto mb-6">
-                <svg className="w-6 h-6 text-white/10" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                  <line x1="16" y1="13" x2="8" y2="13"/>
-                  <line x1="16" y1="17" x2="8" y2="17"/>
-                </svg>
+                <FileText className="w-6 h-6 text-white/10" />
               </div>
               <h3 className="font-syne text-xl font-bold text-white/30 mb-2">No posts yet</h3>
               <p className="text-white/20 font-dm text-sm">Check back soon for new articles.</p>
