@@ -1,19 +1,20 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Atom, Boxes, Cloud, Code2, Figma, GitBranch, Palette, Server, Workflow } from 'lucide-react'
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiNodedotjs, SiPython, SiDocker, SiFigma, SiGit } from 'react-icons/si'
+import { FaAws } from 'react-icons/fa'
 
 const skills = [
-  { name: 'React', icon: Atom },
-  { name: 'Next.js', icon: Code2 },
-  { name: 'TypeScript', icon: Code2 },
-  { name: 'Tailwind CSS', icon: Palette },
-  { name: 'Node.js', icon: Server },
-  { name: 'Python', icon: Workflow },
-  { name: 'Docker', icon: Boxes },
-  { name: 'AWS', icon: Cloud },
-  { name: 'Figma', icon: Figma },
-  { name: 'Git', icon: GitBranch },
+  { name: 'React', icon: SiReact },
+  { name: 'Next.js', icon: SiNextdotjs },
+  { name: 'TypeScript', icon: SiTypescript },
+  { name: 'Tailwind CSS', icon: SiTailwindcss },
+  { name: 'Node.js', icon: SiNodedotjs },
+  { name: 'Python', icon: SiPython },
+  { name: 'Docker', icon: SiDocker },
+  { name: 'AWS', icon: FaAws },
+  { name: 'Figma', icon: SiFigma },
+  { name: 'Git', icon: SiGit },
 ]
 
 const repeatedSkills = [...skills, ...skills]

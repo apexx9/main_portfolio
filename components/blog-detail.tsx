@@ -1,7 +1,7 @@
 // components/blog-detail.tsx
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -28,6 +28,7 @@ interface BlogDetailProps {
 export function BlogDetail({ post }: BlogDetailProps) {
   const router = useRouter()
   const [copied, setCopied] = useState(false)
+  const { scrollYProgress } = useScroll()
 
   const formattedDate = new Date(post.publishedDate).toLocaleDateString('en-US', {
     month: 'long',
@@ -73,6 +74,11 @@ export function BlogDetail({ post }: BlogDetailProps) {
 
   return (
     <main className="min-h-screen bg-[#0A0A0A]">
+      {/* Reading Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-yellow-400 origin-left z-50"
+        style={{ scaleX: scrollYProgress }}
+      />
       {/* Back Button */}
       <div className="fixed top-24 left-6 lg:left-12 z-30">
         <button

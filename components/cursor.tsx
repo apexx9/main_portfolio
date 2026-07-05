@@ -9,19 +9,19 @@ export function Cursor() {
   const [isHovering, setIsHovering] = useState(false)
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
-  
+
   const springConfig = { damping: 25, stiffness: 150 }
   const cursorXSpring = useSpring(cursorX, springConfig)
   const cursorYSpring = useSpring(cursorY, springConfig)
-  
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window)
     }
-    
+
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    
+
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
@@ -37,7 +37,7 @@ export function Cursor() {
     const handleMouseLeave = () => setIsHovering(false)
 
     window.addEventListener('mousemove', moveCursor)
-    
+
     const links = document.querySelectorAll('a, button, [data-hover]')
     links.forEach(link => {
       link.addEventListener('mouseenter', handleMouseEnter)

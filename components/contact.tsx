@@ -115,7 +115,7 @@ export function Contact() {
           {/* Left: Contact Info */}
           <div>
             <div className="space-y-1 mb-12">
-              <p className="text-xs font-medium tracking-[0.1em] text-white/20 uppercase font-dm">Contact</p>
+              <p className="text-xs font-medium tracking-[0.1em] text-white/50 uppercase font-dm">Contact</p>
               <div className="w-12 h-px bg-yellow-400/20" />
             </div>
 
@@ -131,14 +131,14 @@ export function Contact() {
                 <span className="text-white/20">together.</span>
               </h2>
 
-              <p className="text-white/40 text-base font-light leading-relaxed max-w-md font-dm">
+              <p className="text-white/70 text-base font-light leading-relaxed max-w-md font-dm">
                 Have a project in mind? I&apos;d love to hear about it. 
                 Fill out the form and I&apos;ll get back to you within 24 hours.
               </p>
 
               <div className="space-y-6 pt-8 border-t border-white/5">
                 <div>
-                  <p className="text-xs text-white/20 uppercase tracking-[0.1em] mb-2 font-dm">Email</p>
+                  <p className="text-xs text-white/50 uppercase tracking-[0.1em] mb-2 font-dm">Email</p>
                   <a 
                     href="mailto:aaronnartey001@gmail.com" 
                     className="text-lg text-white/60 hover:text-yellow-400 transition-colors duration-300 font-dm"
@@ -148,11 +148,11 @@ export function Contact() {
                   </a>
                 </div>
                 <div>
-                  <p className="text-xs text-white/20 uppercase tracking-[0.1em] mb-2 font-dm">Location</p>
+                  <p className="text-xs text-white/50 uppercase tracking-[0.1em] mb-2 font-dm">Location</p>
                   <p className="text-lg text-white/40 font-dm">Available worldwide</p>
                 </div>
                 <div>
-                  <p className="text-xs text-white/20 uppercase tracking-[0.1em] mb-2 font-dm">Social</p>
+                  <p className="text-xs text-white/50 uppercase tracking-[0.1em] mb-2 font-dm">Social</p>
                   <div className="flex gap-6">
                     {['Twitter', 'GitHub', 'LinkedIn', 'Dribbble'].map(social => (
                       <a
@@ -267,7 +267,7 @@ export function Contact() {
                 >
                   {/* Name */}
                   <div>
-                    <label className="block text-[10px] text-white/25 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
+                    <label className="block text-[10px] text-white/60 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
                       Name *
                     </label>
                     <input
@@ -276,7 +276,7 @@ export function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="John Doe"
-                      className={`w-full bg-transparent border ${errors.name ? 'border-red-500/30' : 'border-white/[0.06]'} rounded-xl px-5 py-4 text-white placeholder:text-white/8 font-dm text-sm focus:outline-none focus:border-white/20 transition-all duration-300 hover:border-white/10`}
+                      className={`w-full bg-transparent border ${errors.name ? 'border-red-500/30' : 'border-white/15'} rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-sm focus:outline-none focus:border-white/30 transition-all duration-300 hover:border-white/30`}
                       data-hover
                     />
                     {errors.name && (
@@ -286,7 +286,7 @@ export function Contact() {
 
                   {/* Email */}
                   <div>
-                    <label className="block text-[10px] text-white/25 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
+                    <label className="block text-[10px] text-white/60 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
                       Email *
                     </label>
                     <input
@@ -295,7 +295,7 @@ export function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="john@example.com"
-                      className={`w-full bg-transparent border ${errors.email ? 'border-red-500/30' : 'border-white/[0.06]'} rounded-xl px-5 py-4 text-white placeholder:text-white/8 font-dm text-sm focus:outline-none focus:border-white/20 transition-all duration-300 hover:border-white/10`}
+                      className={`w-full bg-transparent border ${errors.email ? 'border-red-500/30' : 'border-white/15'} rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-sm focus:outline-none focus:border-white/30 transition-all duration-300 hover:border-white/30`}
                       data-hover
                     />
                     {errors.email && (
@@ -305,7 +305,7 @@ export function Contact() {
 
                   {/* Company */}
                   <div>
-                    <label className="block text-[10px] text-white/25 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
+                    <label className="block text-[10px] text-white/60 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
                       Company
                     </label>
                     <input
@@ -314,14 +314,14 @@ export function Contact() {
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Acme Inc."
-                      className="w-full bg-transparent border border-white/[0.06] rounded-xl px-5 py-4 text-white placeholder:text-white/8 font-dm text-sm focus:outline-none focus:border-white/20 transition-all duration-300 hover:border-white/10"
+                      className="w-full bg-transparent border border-white/15 rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-sm focus:outline-none focus:border-white/30 transition-all duration-300 hover:border-white/30"
                       data-hover
                     />
                   </div>
 
                   {/* Budget Dropdown */}
                   <div>
-                    <label className="block text-[10px] text-white/25 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
+                    <label className="block text-[10px] text-white/60 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
                       Budget Range
                     </label>
                     <div className="relative" ref={dropdownRef}>
@@ -433,7 +433,7 @@ export function Contact() {
 
                   {/* Message */}
                   <div>
-                    <label className="block text-[10px] text-white/25 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
+                    <label className="block text-[10px] text-white/60 uppercase tracking-[0.15em] mb-2.5 font-dm font-medium">
                       Message *
                     </label>
                     <div className="relative">
@@ -444,7 +444,7 @@ export function Contact() {
                         placeholder="Tell me about your project..."
                         rows={5}
                         maxLength={1000}
-                        className={`w-full bg-transparent border ${errors.message ? 'border-red-500/30' : 'border-white/[0.06]'} rounded-xl px-5 py-4 text-white placeholder:text-white/8 font-dm text-sm focus:outline-none focus:border-white/20 transition-all duration-300 resize-none hover:border-white/10`}
+                        className={`w-full bg-transparent border ${errors.message ? 'border-red-500/30' : 'border-white/15'} rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-sm focus:outline-none focus:border-white/30 transition-all duration-300 resize-none hover:border-white/30`}
                         data-hover
                       />
                       <div className="absolute bottom-3 right-4">

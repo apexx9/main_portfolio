@@ -53,7 +53,7 @@ export default function Footer() {
             <div className="mb-6">
               <Logo variant="full" size="md" animated={false} />
             </div>
-            <p className="text-sm text-white/40 leading-relaxed max-w-sm font-dm">
+            <p className="text-sm text-white/70 leading-relaxed max-w-sm font-dm">
               Creating digital experiences that blend beauty with functionality. 
               Let&apos;s build something remarkable together.
             </p>
@@ -71,7 +71,7 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 disabled={status === 'loading' || status === 'success'}
-                className="flex-1 bg-transparent border-none outline-none text-sm text-white placeholder:text-white/30 font-dm disabled:opacity-50"
+                className="flex-1 bg-transparent border-none outline-none text-sm text-white placeholder:text-white/50 font-dm disabled:opacity-50"
               />
               <button 
                 type="submit"
@@ -112,7 +112,7 @@ export default function Footer() {
               )}
             </AnimatePresence>
 
-            <p className="text-[10px] tracking-[0.06em] uppercase text-white/20 mt-3 font-dm">
+            <p className="text-[10px] tracking-[0.06em] uppercase text-white/40 mt-3 font-dm">
               By subscribing you agree to the terms and conditions
             </p>
           </div>
@@ -121,11 +121,11 @@ export default function Footer() {
         {/* Links Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-12 border-t border-white/5">
           <div>
-            <p className="font-syne text-[11px] font-bold tracking-[0.1em] uppercase text-white/30 mb-5" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>Links</p>
+            <p className="font-syne text-[11px] font-bold tracking-[0.1em] uppercase text-white/50 mb-5" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>Links</p>
             <ul className="space-y-3">
               {['Home', 'Work', 'About', 'Contact'].map(link => (
                 <li key={link}>
-                  <Link href="#" className="text-sm text-white/50 hover:text-white transition-colors font-dm">
+                  <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors font-dm">
                     {link}
                   </Link>
                 </li>
@@ -133,11 +133,11 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="font-syne text-[11px] font-bold tracking-[0.1em] uppercase text-white/30 mb-5" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>Services</p>
+            <p className="font-syne text-[11px] font-bold tracking-[0.1em] uppercase text-white/50 mb-5" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>Services</p>
             <ul className="space-y-3">
               {['Web Design', 'Development', 'Branding'].map(link => (
                 <li key={link}>
-                  <Link href="#" className="text-sm text-white/50 hover:text-white transition-colors font-dm">
+                  <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors font-dm">
                     {link}
                   </Link>
                 </li>
@@ -145,11 +145,11 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="font-syne text-[11px] font-bold tracking-[0.1em] uppercase text-white/30 mb-5" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>Resources</p>
+            <p className="font-syne text-[11px] font-bold tracking-[0.1em] uppercase text-white/50 mb-5" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>Resources</p>
             <ul className="space-y-3">
               {['Blog', 'Case Studies', 'FAQ'].map(link => (
                 <li key={link}>
-                  <Link href="#" className="text-sm text-white/50 hover:text-white transition-colors font-dm">
+                  <Link href="#" className="text-sm text-white/70 hover:text-white transition-colors font-dm">
                     {link}
                   </Link>
                 </li>
@@ -157,17 +157,17 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="font-syne text-[11px] font-bold tracking-widest uppercase text-white/30 mb-5" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>Socials</p>
+            <p className="font-syne text-[11px] font-bold tracking-widest uppercase text-white/50 mb-5" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>Socials</p>
             <ul className="space-y-3">
               {socials.map(social => (
                 <li key={social.name}>
                   <Link 
                     href={social.url} 
-                    className="text-sm text-white/50 hover:text-white transition-colors flex items-center gap-2 font-dm"
+                    className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2 font-dm"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <social.icon className="w-4 h-4 text-white/35" />
+                    <social.icon className="w-4 h-4 text-white/50" />
                     {social.name}
                   </Link>
                 </li>
@@ -176,7 +176,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="text-xs text-white/20 mt-16 pt-8 border-t border-white/5 font-dm">
+        <p className="text-xs text-white/40 mt-16 pt-8 border-t border-white/15 font-dm">
           © {date} ronny.tech. All rights reserved.
         </p>
       </div>

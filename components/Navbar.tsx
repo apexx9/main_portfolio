@@ -209,7 +209,7 @@ export default function Nav() {
                       onClick={() => setIsMobileOpen(false)}
                       className="group flex items-center gap-4 py-3"
                     >
-                      <span className="text-[10px] text-white/15 font-dm tracking-[0.2em] uppercase w-6">
+                      <span className="text-[10px] text-white/40 font-dm tracking-[0.2em] uppercase w-6">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <span className="text-4xl sm:text-5xl font-syne font-bold text-white/80 group-hover:text-white transition-colors duration-300" style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}>
@@ -258,7 +258,7 @@ export default function Nav() {
                       <a
                         key={social.name}
                         href={social.url}
-                        className="text-xs text-white/25 hover:text-white/60 transition-colors duration-300 font-dm tracking-wider"
+                        className="text-xs text-white/40 hover:text-white/80 transition-colors duration-300 font-dm tracking-wider"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -268,14 +268,14 @@ export default function Nav() {
                   </div>
                   <a
                     href="mailto:aaronnartey001@gmail.com"
-                    className="text-xs text-white/20 hover:text-white/50 transition-colors duration-300 font-dm"
+                    className="text-xs text-white/40 hover:text-white/70 transition-colors duration-300 font-dm"
                   >
                     aaronnartey001@gmail.com
                   </a>
                 </div>
 
                 {/* Copyright */}
-                <p className="text-[10px] text-white/10 font-dm">
+                <p className="text-[10px] text-white/30 font-dm">
                   © {new Date().getFullYear()} ronny.tech
                 </p>
               </motion.div>
