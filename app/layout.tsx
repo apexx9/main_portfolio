@@ -1,8 +1,8 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { Cursor } from '@/components/cursor'
-import { Loading } from '@/components/loading'
+import { ScrollProgress } from '@/components/scroll-progress'
 import Nav from '@/components/Navbar'
 import Footer from '@/components/footer'
 
@@ -58,6 +58,13 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -72,7 +79,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[#0A0A0A] text-white antialiased">
-        <Loading />
+        <ScrollProgress />
         <Cursor />
         <SmoothScroll>
           <Nav />

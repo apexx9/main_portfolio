@@ -11,7 +11,7 @@ export default function About() {
   })
 
   const opacity = useTransform(scrollYProgress, [0, 0.3, 1], [0, 1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.3, 1], [60, 0, -60])
+  const y = useTransform(scrollYProgress, [0, 0.3, 1], [30, 0, -30])
 
   return (
     <section ref={containerRef} id="about" className="py-40 relative border-t border-white/5">

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from './logo'
+import { Button } from './button'
 import { getSocials } from '@/lib/socials'
 import { ArrowRight, Menu, X } from 'lucide-react'
 
@@ -74,15 +75,14 @@ export default function Nav() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 2.8 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       className="fixed top-0 left-0 right-0 z-40"
     >
       {/* Navbar background */}
-      <div className={`absolute inset-0 transition-all duration-500 ${
-        isScrolled || isMobileOpen
-          ? 'bg-[#0A0A0A]/88 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.03)]' 
-          : 'bg-transparent'
-      }`} />
+      <div className={`absolute inset-0 transition-all duration-500 ${isScrolled || isMobileOpen
+        ? 'bg-[#0A0A0A]/88 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.03)]'
+        : 'bg-transparent'
+        }`} />
 
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -96,7 +96,7 @@ export default function Nav() {
                 key={item.label}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 3 + index * 0.1 }}
+                transition={{ delay: 0.3 + index * 0.05 }}
               >
                 <Link
                   href={item.href}
@@ -107,11 +107,11 @@ export default function Nav() {
                 </Link>
               </motion.div>
             ))}
-            
+
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3.3 }}
+              transition={{ delay: 0.5 }}
             >
               <Link
                 href="/#contact"
@@ -176,7 +176,7 @@ export default function Nav() {
             />
 
             {/* Grid pattern on overlay */}
-            <div 
+            <div
               className="absolute inset-0 opacity-[0.02]"
               style={{
                 backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
@@ -197,8 +197,8 @@ export default function Nav() {
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -40 }}
-                    transition={{ 
-                      duration: 0.6, 
+                    transition={{
+                      duration: 0.6,
                       delay: 0.1 + i * 0.08,
                       ease: [0.76, 0, 0.24, 1]
                     }}
@@ -232,24 +232,22 @@ export default function Nav() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -40 }}
-                transition={{ 
-                  duration: 0.6, 
+                transition={{
+                  duration: 0.6,
                   delay: 0.1 + menuLinks.main.length * 0.08,
                   ease: [0.76, 0, 0.24, 1]
                 }}
                 className="space-y-8"
               >
                 {/* CTA */}
-                <Link
-                  href="/#contact"
+                <Button
                   onClick={() => setIsMobileOpen(false)}
-                  className="btn-yellow inline-flex items-center gap-3 px-8 py-4 text-sm font-dm w-full sm:w-auto justify-center"
+                  href="#contact"
+                  variant="primary"
+                  className="group w-full lg:w-fit flex justify-center"
                 >
-                  <span className="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
                   Start a project
-                </Link>
+                </Button>
 
                 {/* Social & Contact */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-white/[0.04]">

@@ -276,7 +276,7 @@ export function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="John Doe"
-                      className={`w-full bg-transparent border ${errors.name ? 'border-red-500/30' : 'border-white/15'} rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-sm focus:outline-none focus:border-white/30 transition-all duration-300 hover:border-white/30`}
+                      className={`w-full bg-transparent border ${errors.name ? 'border-red-500/30' : 'border-white/15'} rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-[16px] md:text-sm focus:outline-none focus:border-white/30 transition-all duration-300 hover:border-white/30`}
                       data-hover
                     />
                     {errors.name && (
@@ -295,7 +295,7 @@ export function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="john@example.com"
-                      className={`w-full bg-transparent border ${errors.email ? 'border-red-500/30' : 'border-white/15'} rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-sm focus:outline-none focus:border-white/30 transition-all duration-300 hover:border-white/30`}
+                      className={`w-full bg-transparent border ${errors.email ? 'border-red-500/30' : 'border-white/15'} rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-[16px] md:text-sm focus:outline-none focus:border-white/30 transition-all duration-300 hover:border-white/30`}
                       data-hover
                     />
                     {errors.email && (
@@ -314,7 +314,7 @@ export function Contact() {
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Acme Inc."
-                      className="w-full bg-transparent border border-white/15 rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-sm focus:outline-none focus:border-white/30 transition-all duration-300 hover:border-white/30"
+                      className="w-full bg-transparent border border-white/15 rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-[16px] md:text-sm focus:outline-none focus:border-white/30 transition-all duration-300 hover:border-white/30"
                       data-hover
                     />
                   </div>
@@ -444,7 +444,7 @@ export function Contact() {
                         placeholder="Tell me about your project..."
                         rows={5}
                         maxLength={1000}
-                        className={`w-full bg-transparent border ${errors.message ? 'border-red-500/30' : 'border-white/15'} rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-sm focus:outline-none focus:border-white/30 transition-all duration-300 resize-none hover:border-white/30`}
+                        className={`w-full bg-transparent border ${errors.message ? 'border-red-500/30' : 'border-white/15'} rounded-xl px-5 py-4 text-white placeholder:text-white/30 font-dm text-[16px] md:text-sm focus:outline-none focus:border-white/30 transition-all duration-300 resize-none hover:border-white/30`}
                         data-hover
                       />
                       <div className="absolute bottom-3 right-4">

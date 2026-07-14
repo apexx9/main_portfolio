@@ -1,7 +1,7 @@
 // components/footer.tsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { Logo } from './logo'
@@ -16,6 +16,17 @@ export default function Footer() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
+  const [time, setTime] = useState<string>('')
+
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date()
+      setTime(now.toLocaleTimeString('en-US', { timeZone: 'Africa/Accra', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }))
+    }
+    updateClock()
+    const intervalId = setInterval(updateClock, 1000)
+    return () => clearInterval(intervalId)
+  }, [])
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -71,7 +82,7 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 disabled={status === 'loading' || status === 'success'}
-                className="flex-1 bg-transparent border-none outline-none text-sm text-white placeholder:text-white/50 font-dm disabled:opacity-50"
+                className="flex-1 bg-transparent border-none outline-none text-[16px] md:text-sm text-white placeholder:text-white/50 font-dm disabled:opacity-50"
               />
               <button 
                 type="submit"
@@ -176,9 +187,21 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="text-xs text-white/40 mt-16 pt-8 border-t border-white/15 font-dm">
-          © {date} ronny.tech. All rights reserved.
-        </p>
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-16 pt-8 border-t border-white/15 gap-4">
+          <p className="text-xs text-white/40 font-dm">
+            © {date} ronny.tech. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            {time && (
+              <p className="text-xs text-white/40 font-dm tracking-widest uppercase">
+                Accra, GH • {time}
+              </p>
+            )}
+            <span className="text-[10px] font-dm tracking-[0.2em] text-white/60 uppercase border border-white/10 px-3 py-1 rounded-full bg-white/5">
+              Creator
+            </span>
+          </div>
+        </div>
       </div>
     </footer>
   )

@@ -7,6 +7,7 @@ const notion = new Client({
 
 export const PROJECTS_DATABASE_ID = process.env.NOTION_PROJECTS_DATABASE_ID || ''
 export const BLOG_DATABASE_ID = process.env.NOTION_BLOG_DATABASE_ID || ''
+export const EXPERIENCE_DATABASE_ID = process.env.NOTION_EXPERIENCE_DATABASE_ID || ''
 
 // ─── Types ────────────────────────────────────────────
 
@@ -47,6 +48,16 @@ export interface NotionBlogPost {
   content: string
   createdAt: string
   updatedAt: string
+}
+
+export interface NotionExperience {
+  id: string
+  company: string
+  role: string
+  duration: string
+  description: string
+  order: number
+  logo: string | null
 }
 
 // ─── Helper: Parse a Notion page into a project ──────
@@ -104,6 +115,38 @@ function parseBlogPage(page: any): NotionBlogPost {
     content: '',
     createdAt: page.created_time,
     updatedAt: page.last_edited_time,
+  }
+}
+
+// ─── Helper: Parse a Notion page into an experience ──
+
+function parseExperiencePage(page: any): NotionExperience {
+  const properties = page.properties || {}
+  
+  // Notion icons can be external urls, files, or emojis.
+  // We'll prioritize file/external URL.
+  let logo = null
+  
+  // Check if they used a 'Logo' property (Files & media) in Notion
+  const logoFile = properties.Logo?.files?.[0]
+  if (logoFile) {
+    logo = logoFile.external?.url || logoFile.file?.url
+  } 
+  // Fallback to page icon if no Logo property
+  else if (page.icon) {
+    if (page.icon.type === 'external') logo = page.icon.external.url
+    else if (page.icon.type === 'file') logo = page.icon.file.url
+    else if (page.icon.type === 'emoji') logo = page.icon.emoji
+  }
+
+  return {
+    id: page.id,
+    company: properties.Company?.title?.[0]?.plain_text || 'Unknown Company',
+    role: properties.Role?.rich_text?.map((t: any) => t.plain_text).join('') || '',
+    duration: properties.Duration?.rich_text?.map((t: any) => t.plain_text).join('') || '',
+    description: properties.Description?.rich_text?.map((t: any) => t.plain_text).join('') || '',
+    order: properties.Order?.number || 0,
+    logo,
   }
 }
 
@@ -271,6 +314,42 @@ export async function getBlogPostBySlug(slug: string): Promise<NotionBlogPost | 
   } catch (error) {
     console.error('Error fetching blog post:', error)
     return null
+  }
+}
+
+// ─── Experience API ──────────────────────────────────
+
+export async function getExperiences(): Promise<NotionExperience[]> {
+  if (!EXPERIENCE_DATABASE_ID) return []
+
+  try {
+    const response = await fetch(
+      `https://api.notion.com/v1/databases/${EXPERIENCE_DATABASE_ID}/query`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
+          'Content-Type': 'application/json',
+          'Notion-Version': '2022-06-28',
+        },
+        body: JSON.stringify({
+          sorts: [
+            { property: 'Order', direction: 'ascending' },
+          ],
+        }),
+      }
+    )
+
+    if (!response.ok) {
+      console.error('Notion API error (Experiences):', await response.json())
+      return []
+    }
+
+    const data = await response.json()
+    return (data.results || []).map(parseExperiencePage)
+  } catch (error) {
+    console.error('Error fetching experiences:', error)
+    return []
   }
 }
 

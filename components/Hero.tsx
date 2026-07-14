@@ -34,7 +34,7 @@ export default function Hero() {
         className="absolute top-1/2 right-[-5%] -translate-y-1/2 w-[700px] h-[700px] opacity-[0.12] pointer-events-none hero-rings-container"
         initial={{ scale: 0.8, y: 50 }}
         whileInView={{ scale: 1, y: 0 }}
-        transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1] }}
+        transition={{ duration: 1, ease: "easeOut" }}
       >
         <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
           <circle cx="350" cy="350" r="80" stroke="rgba(255,255,255,0.5)" strokeWidth="1" fill="none" />
@@ -55,29 +55,41 @@ export default function Hero() {
 
       <motion.div
         className="max-w-[1400px] mx-auto px-6 lg:px-12 pt-16 pb-12 w-full"
-        initial={{ y: 50 }}
-        animate={{ y: 0 }}
-        transition={{ delay: 3.5, duration: 1, ease: [0.76, 0, 0.24, 1] }}
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
           {/* Left: Headline */}
           <div className="space-y-12">
-            <div className="overflow-hidden">
-              <motion.h1
-                initial={{ y: 100 }}
-                animate={{ y: 0 }}
-                transition={{ delay: 3.6, duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-                className="font-syne text-[clamp(3rem,8vw,7rem)] leading-[0.9] font-bold tracking-tight"
-                style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}
+            <div className="flex flex-col gap-6">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="inline-flex items-center gap-3 w-fit"
               >
-                {title}
-              </motion.h1>
+                 <span className="text-[10px] font-dm tracking-[0.2em] text-white/70 uppercase">
+                    hello • akwaaba • こんにちは
+                 </span>
+              </motion.div>
+              <div className="overflow-hidden">
+                <motion.h1
+                  initial={{ y: 100 }}
+                  animate={{ y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+                  className="font-syne text-[clamp(3rem,8vw,7rem)] leading-[0.9] font-bold tracking-tight"
+                  style={{ fontFamily: "'Syne', var(--font-inter), sans-serif" }}
+                >
+                  {title}
+                </motion.h1>
+              </div>
             </div>
 
             <motion.div
-              initial={{ y: 30 }}
-              animate={{ y: 0 }}
-              transition={{ delay: 3.8, duration: 0.8 }}
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
             >
               <p className="text-white/70 text-lg lg:text-xl font-light max-w-xl leading-relaxed font-dm">
                 {subtitle}
@@ -87,15 +99,15 @@ export default function Hero() {
 
           {/* Right: CTA Group */}
           <motion.div
-            initial={{ y: 30 }}
-            animate={{ y: 0 }}
-            transition={{ delay: 4.0, duration: 0.8 }}
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
             className="flex flex-col items-start lg:items-end gap-5"
           >
             <motion.p
-              initial={{ y: 40 }}
-              animate={{ y: 0 }}
-              transition={{ delay: 4.1, duration: 0.8 }}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
               className="text-[11px] text-white/60 tracking-[0.2em] uppercase font-dm"
             >
               Currently Building
