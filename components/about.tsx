@@ -1,16 +1,8 @@
-'use client'
-
-import { motion } from 'framer-motion'
-
 export default function About() {
   return (
     <section id="about" className="py-20 md:py-40 relative border-t border-white/5">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        <div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
             <div>
               <p className="text-xs font-medium tracking-[0.1em] text-white/50 uppercase mb-8 font-dm">About</p>
@@ -46,7 +38,7 @@ export default function About() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

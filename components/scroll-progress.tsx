@@ -1,9 +1,13 @@
 'use client'
 
 import { motion, useScroll } from 'framer-motion'
+import { useMediaQuery } from '@/hooks/use-media-query'
 
 export function ScrollProgress() {
+  const isDesktop = useMediaQuery('(min-width: 769px)')
   const { scrollYProgress } = useScroll()
+
+  if (!isDesktop) return null
 
   return (
     <motion.div

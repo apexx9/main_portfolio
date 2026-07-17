@@ -14,6 +14,9 @@ export default async function Home() {
   const blogPosts = await getBlogPosts()
   const projects = await getProjects()
   const experiences = await getExperiences()
+  
+  console.log('Experiences data:', experiences)
+  
   return (
     <>
       <main>
