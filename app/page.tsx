@@ -22,7 +22,7 @@ export default async function Home() {
         <WorkGrid projects={projects} />
         <CTADivider />
         <About />
-        {experiences.length > 0 && <Experience experiences={experiences} />}
+        <Experience experiences={experiences} />
         <BlogSection posts={blogPosts} />
         <Contact />
       </main>

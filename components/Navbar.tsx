@@ -242,7 +242,7 @@ export default function Nav() {
                 {/* CTA */}
                 <Button
                   onClick={() => setIsMobileOpen(false)}
-                  href="#contact"
+                  href="/#contact"
                   variant="primary"
                   className="group w-full lg:w-fit flex justify-center"
                 >

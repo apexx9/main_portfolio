@@ -1,22 +1,16 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 
 export default function About() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  })
-
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 1], [0, 1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.3, 1], [30, 0, -30])
-
   return (
-    <section ref={containerRef} id="about" className="py-40 relative border-t border-white/5">
+    <section id="about" className="py-20 md:py-40 relative border-t border-white/5">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <motion.div style={{ opacity, y }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
             <div>
               <p className="text-xs font-medium tracking-[0.1em] text-white/50 uppercase mb-8 font-dm">About</p>
