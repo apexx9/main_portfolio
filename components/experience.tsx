@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
 import { NotionExperience } from '@/lib/notion'
 
 interface ExperienceProps {
@@ -8,12 +7,8 @@ interface ExperienceProps {
 }
 
 export default function Experience({ experiences }: ExperienceProps) {
-  useEffect(() => {
-    console.log('Experience component mounted, experiences:', experiences)
-  }, [experiences])
-
   return (
-    <section id="experience" className="py-16 md:py-32 relative border-t border-white/5 bg-red-500/10">
+    <section id="experience" className="py-16 md:py-32 relative border-t border-white/5">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div>
           <div className="mb-12 md:mb-20">

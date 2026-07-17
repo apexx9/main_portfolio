@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { ArrowRight, Mail } from 'lucide-react'
 
 interface ButtonProps {
@@ -60,14 +61,16 @@ export function Button({
 
   if (href) {
     return (
-      <motion.a
-        href={href}
-        className={`${baseClasses} ${variants[variant]} ${className} group`}
-        data-hover
-        {...motionProps}
-      >
-        {buttonContent}
-      </motion.a>
+      <motion.div {...motionProps}>
+        <Link 
+          href={href} 
+          onClick={onClick}
+          className={`${baseClasses} ${variants[variant]} ${className} group`}
+          data-hover
+        >
+          {buttonContent}
+        </Link>
+      </motion.div>
     )
   }
 
